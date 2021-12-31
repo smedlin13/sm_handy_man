@@ -3,7 +3,7 @@ import axios from 'axios';
 import WorkerForm from './WorkerForm';
 import WorkerList from './WorkerList';
 
-const Workers = ({}) => {
+const Worker = ({}) => {
   const [workers, setWorkers] = useState([])
 
   useEffect( () => {
@@ -17,7 +17,7 @@ const Workers = ({}) => {
   const addWorker = (worker) => {
     axios.post('/api/workers', { worker })
     .then( res => {
-      setWorkers([...workers, res.data])
+      setWorkers([ ...workers, res.data])
     })
     .catch( err => console.log(err))
     }
@@ -32,4 +32,4 @@ const Workers = ({}) => {
   )
 }
 
-export default Workers;
+export default Worker;

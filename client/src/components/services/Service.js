@@ -3,7 +3,7 @@ import axios from 'axios';
 import ServiceForm from './ServiceForm';
 import ServiceList from './ServiceList';
 
-const Services = ({ workerId }) => {
+const Service = ({ workerId }) => {
   const [services, setServices] = useState ([])
 
   useEffect( () => {
@@ -57,4 +57,4 @@ const Services = ({ workerId }) => {
 
 }
 
-export default Services;
+export default Service;

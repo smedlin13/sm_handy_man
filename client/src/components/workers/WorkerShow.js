@@ -2,11 +2,11 @@ import { useParams } from 'react-router-dom' ;
 import { useState, useEffect } from 'react'; 
 import axios from 'axios';
 // import WorkerForm from './WorkerForm';
-import Services from '../services/Services';
+import Service from '../services/Service';
 
 
-const WorkerShow = ({id, name, title}) => {
-  const [worker, setWorker] = useState({name: '', title: ''})
+const WorkerShow = ({id, name, title, number}) => {
+  const [worker, setWorker] = useState({name: '', title: '', number: ''})
   let params = useParams()
 
   useEffect( () => {
@@ -20,10 +20,11 @@ const WorkerShow = ({id, name, title}) => {
     <>
       <h1>{worker.name}</h1>
       <h2>{worker.title}</h2>
+      <h2>{worker.number}</h2>
       <p>ID: {params.workerId}</p>
       <button>Edit</button>
       <button>Delete</button>
-      <Services blogId={params.workerId}/>
+      <Service blogId={params.workerId}/>
     </>
 
   )

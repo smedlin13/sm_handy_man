@@ -5,7 +5,7 @@ const WorkerList = ({ workers }) => {
     <>
       { workers.map( w =>
         <>
-        <h1><Link to={`/workers/${w.id}`} key={w.id}>{w.name}</Link> </h1>
+        <Link to={`/workers/${w.id}`} key={w.id}>{w.name} {w.title}</Link>
         <br />
         </>
         )}
