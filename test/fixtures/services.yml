@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  min: 1
+  desc: MyText
+  worker: one
+
+two:
+  type: 
+  min: 1
+  desc: MyText
+  worker: two
