@@ -3,7 +3,7 @@ import axios from 'axios';
 import ServiceForm from './ServiceForm';
 import ServiceList from './ServiceList';
 
-const Service = ({ workerId }) => {
+const Services = ({ workerId }) => {
   const [services, setServices] = useState ([])
 
   useEffect( () => {
@@ -13,8 +13,8 @@ const Service = ({ workerId }) => {
   }, [])
 
   const addService = (service) => {
-    axios.post(`/api/workers/$[workerId]/services`, { service })
-    .then( res => setServices([...services, res.data]))
+    axios.post(`/api/workers/${workerId}/services`, { service })
+    .then( res => setServices([ ...services, res.data]))
     .catch( err => console.log(err))
   }
 
@@ -48,8 +48,8 @@ const Service = ({ workerId }) => {
       <ServiceList
       services={services}
       workerId={workerId}
-      deleteServices={deleteService}
-      updatedService={updateService}
+      deleteService={deleteService}
+      updateService={updateService}
       />
     </>
 
@@ -57,4 +57,4 @@ const Service = ({ workerId }) => {
 
 }
 
-export default Service;
+export default Services;

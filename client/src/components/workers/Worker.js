@@ -1,33 +1,30 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios';
+import { useState } from 'react';
 import WorkerForm from './WorkerForm';
-import WorkerList from './WorkerList';
 
-const Worker = ({}) => {
-  const [workers, setWorkers] = useState([])
-
-  useEffect( () => {
-    axios.get('/api/workers')
-      .then( res => {
-        setWorkers(res.data)
-      })
-      .catch( err => console.log(err))
-  }, [])
-
-  const addWorker = (worker) => {
-    axios.post('/api/workers', { worker })
-    .then( res => {
-      setWorkers([ ...workers, res.data])
-    })
-    .catch( err => console.log(err))
-    }
-
+const Worker = ({id, updateWorker, deleteWorker, name, title, number }) => {
+  const [editing, setEdit] = useState(false)
   return (
     <>
-      <h1>Workers Page</h1>
-      <WorkerForm addWorker={addWorker} />
-      <WorkerList workers={workers} />
-
+      <h2>{name}</h2>
+      <h3>{title}</h3>
+      <h3>Phone: {number}</h3>
+      {
+        editing ? 
+        <>
+        <WorkerForm
+        id={id}
+        name={name}
+        title={title}
+        number={number}
+        updateWorker={updateWorker}
+        setEdit={setEdit}
+        />
+        <button onClick={ () => setEdit(false) }>Cancel</button>
+        </>
+        :
+        <button onClick={ () => setEdit(true) }>Edit</button>
+      }
+      <button onClick={ () => deleteWorker(id) }>Delete</button>
     </>
   )
 }

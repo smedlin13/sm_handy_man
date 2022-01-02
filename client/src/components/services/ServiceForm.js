@@ -1,22 +1,34 @@
 import { useState, useEffect } from 'react';
 
-const ServiceForm = ({ addService }) => {
-  const [service, setService] = useState({ title: '', min: 30, desc: ''})
+const ServiceForm = ({ addService, id, type, min, desc, updateService, setEdit }) => {
+  const [service, setService] = useState({ type: '', min: '', desc: ''})
+
+  useEffect( () => {
+    if (id) {
+      setService({ type, min, desc })
+    }
+  }, [])
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addService(service)
-    setService({ title: '', min: 30, desc: ''})
+    if (id) {
+      updateService(id, service)
+      setEdit(false)
+    } else { 
+      addService(service)
+    }
+    setService({ type: '', min: '', desc: '' })
 
   }
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label>Title:</label>
+        <label>Type of Service:</label>
         <input
-          name='title'
-          value={service.title}
-          onChange={(e) => setService({ ...service, title: e.target.value })}
+          name='type'
+          value={service.type}
+          onChange={(e) => setService({ ...service, type: e.target.value })}
           required
         />
         <label>Length of Service:</label>

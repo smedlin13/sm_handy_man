@@ -1,11 +1,22 @@
 import { useState, useEffect } from 'react';
 
-const WorkerForm = ({ addWorker }) => {
+const WorkerForm = ({ addWorker, updateWorker, setEdit, id, name, title, number }) => {
   const [worker, setWorker ] = useState({ name: '', title: '', number: '' })
+
+  useEffect( () => {
+    if (id) {
+      setWorker({ name, title, number })
+    }
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addWorker(worker)
+    if (id) {
+      updateWorker(id, worker)
+      setEdit(false)
+    } else {
+      addWorker(worker)
+    }
     setWorker({ name: '', title: '', number: '' })
 
   }
@@ -29,7 +40,7 @@ const WorkerForm = ({ addWorker }) => {
             required
             placeholder='title'
           />
-          <label>Name:</label>
+          <label>Number:</label>
           <input
             name='number'
             value={worker.number}
