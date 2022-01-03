@@ -1,34 +1,41 @@
 import { useState, useEffect } from 'react';
 
-const ServiceForm = ({ addService, id, type, min, desc, updateService, setEdit }) => {
-  const [service, setService] = useState({ type: '', min: '', desc: ''})
+const ServiceForm = ({ addService }) => {
+  const [service, setService] = useState({ s_type: '', min: '', desc: ''})
 
-  useEffect( () => {
-    if (id) {
-      setService({ type, min, desc })
-    }
-  }, [])
+  // useEffect( () => {
+  //   if (id) {
+  //     setService({ s_type, min, desc })
+  //   }
+  // }, [])
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (id) {
-      updateService(id, service)
-      setEdit(false)
-    } else { 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   if (id) {
+  //     updateService(id, service)
+  //     setEdit(false)
+  //   } else { 
+  //     addService(service)
+  //   }
+  //   setService({ s_type: '', min: '', desc: '' })
+
+  // }
+
+    const handleSubmit = (e) => {
+      e.preventDefault()
       addService(service)
+      setService({ s_type: '', min: '', desc: ''})
     }
-    setService({ type: '', min: '', desc: '' })
 
-  }
   return (
     <>
       <form onSubmit={handleSubmit}>
         <label>Type of Service:</label>
         <input
           name='type'
-          value={service.type}
-          onChange={(e) => setService({ ...service, type: e.target.value })}
+          value={service.s_type}
+          onChange={(e) => setService({ ...service, s_type: e.target.value })}
           required
         />
         <label>Length of Service:</label>
@@ -37,6 +44,7 @@ const ServiceForm = ({ addService, id, type, min, desc, updateService, setEdit }
           value={service.min}
           onChange={(e) => setService({ ...service, min: e.target.value })}
           required
+          type="number"
         />
         <label>Description of Service:</label>
         <textarea
@@ -45,7 +53,7 @@ const ServiceForm = ({ addService, id, type, min, desc, updateService, setEdit }
           onChange={(e) => setService({ ...service, desc: e.target.value })}
           required>
           </textarea>
-        <button type="submit">Submit</button>
+        <button type='submit'>Submit</button>
       </form>
     </>
   )

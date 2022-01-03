@@ -5,29 +5,26 @@ import ServiceForm from './ServiceForm';
 
 
 
-const ServiceShow = ({ id, type, min, desc, deleteService, updateService }) => {
-    const [editing, setEdit] = useState(false)
-  
+const ServiceShow = ({ id, s_type, min, desc, deleteService, updateService }) => {
+  const [worker, setService] = useState({ s_type: '', desc: '', min: ''})
+  const [editing, setEdit] = useState(false)
+  let params = useParams()
+
+  useEffect( () => {
+      axios.get(`/api/workers/${params.workerId}/services/${params.servicesId}`)
+        .then( res => {
+          setService(res.data)
+        })
+        .catch( err => console.log(err))
+    }, [])
+
     return(
-      <>
-        <h2>{type}</h2>
-        <h4>Minutes to complete: {min}</h4>
-        <p>{desc}</p>
-        { editing ?
-          <>
-            <ServiceForm
-              id={id}
-              type={type}
-              desc={desc}
-              min={min}
-              updateService={updateService}
-              setEdit={setEdit}
-            />
-            <button onClick={() => setEdit(false)}>Cancel</button>
-          </>
-          :
-          <button onClick={() => setEdit(true)}>Edit</button>
-        }
+        <>
+        <h2>{service.s_type}</h2>
+        <h4>Minutes to complete: {service.min}</h4>
+        <p>{service.desc}</p>
+        <button onClick={() => setEdit(false)}>Cancel</button>
+        <button onClick={() => setEdit(true)}>Edit</button>
         <button onClick={() => deleteService(id)}>Delete</button>
       </>
     )

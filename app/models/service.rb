@@ -1,5 +1,5 @@
 class Service < ApplicationRecord
-  belongs_to :workers
-  validates :type, :min, :desc, presence: true
-  validates :mins, numericality: { only_integer: true }
+  belongs_to :worker
+  validates :s_type, :min, :desc, presence: true
+  validates :min, numericality: { only_integer: true }
 end

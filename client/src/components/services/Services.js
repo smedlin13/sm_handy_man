@@ -8,13 +8,17 @@ const Services = ({ workerId }) => {
 
   useEffect( () => {
     axios.get(`/api/workers/${workerId}/services`)
-      .then( res => setServices(res.data) )
+      .then( res => {
+        setServices(res.data) 
+      })
       .catch ( err => console.log(err))
   }, [])
 
   const addService = (service) => {
     axios.post(`/api/workers/${workerId}/services`, { service })
-    .then( res => setServices([ ...services, res.data]))
+    .then( res => { 
+      setServices([ ...services, res.data])
+  })
     .catch( err => console.log(err))
   }
 
