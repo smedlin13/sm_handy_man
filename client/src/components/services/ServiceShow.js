@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import ServiceForm from './ServiceForm';
+import Comments from '../comments/Comments';
 
 
 
-const ServiceShow = ({ id, s_type, min, desc, deleteService, updateService }) => {
-  const [worker, setService] = useState({ s_type: '', desc: '', min: ''})
+const ServiceShow = ({ id, s_type, min, desc, deleteService, updateService, workerId, serviceId }) => {
+  const [service, setService] = useState({ s_type: '', desc: '', min: ''})
   const [editing, setEdit] = useState(false)
   let params = useParams()
 
@@ -20,12 +20,13 @@ const ServiceShow = ({ id, s_type, min, desc, deleteService, updateService }) =>
 
     return(
         <>
-        <h2>{service.s_type}</h2>
-        <h4>Minutes to complete: {service.min}</h4>
-        <p>{service.desc}</p>
+        <h2>{s_type}</h2>
+        <h4>Minutes to complete: {min}</h4>
+        <p>{desc}</p>
         <button onClick={() => setEdit(false)}>Cancel</button>
         <button onClick={() => setEdit(true)}>Edit</button>
         <button onClick={() => deleteService(id)}>Delete</button>
+        <Comments serviceId={serviceId} />
       </>
     )
   }

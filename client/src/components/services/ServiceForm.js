@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const ServiceForm = ({ addService }) => {
+const ServiceForm = ({ addService, updateService, setEdit, id, s_type, min, desc }) => {
   const [service, setService] = useState({ s_type: '', min: '', desc: ''})
 
   // useEffect( () => {
@@ -10,23 +10,23 @@ const ServiceForm = ({ addService }) => {
   // }, [])
 
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   if (id) {
-  //     updateService(id, service)
-  //     setEdit(false)
-  //   } else { 
-  //     addService(service)
-  //   }
-  //   setService({ s_type: '', min: '', desc: '' })
-
-  // }
-
-    const handleSubmit = (e) => {
-      e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (id) {
+      updateService(id, service)
+      setEdit(false)
+    } else { 
       addService(service)
-      setService({ s_type: '', min: '', desc: ''})
     }
+    setService({ s_type: '', min: '', desc: '' })
+
+  }
+
+    // const handleSubmit = (e) => {
+    //   e.preventDefault()
+    //   addService(service)
+    //   setService({ s_type: '', min: '', desc: ''})
+    // }
 
   return (
     <>
