@@ -3,7 +3,7 @@ import ServiceShow from './ServiceShow';
 import Service from './Service';
 
 
-const ServiceList = ({ services, workerId, serviceId }) => {
+const ServiceList = ({ services, workerId, serviceId, updateService, deleteService }) => {
   return (
     <>
       { services.map( s =>
@@ -17,8 +17,8 @@ const ServiceList = ({ services, workerId, serviceId }) => {
           <Service
           {...s}
             workerId={workerId}
-            // deleteService={deleteService}
-            // updateService={updateService}  
+            deleteService={deleteService}
+            updateService={updateService}  
           />
           <Link to={`/workers/${workerId}/services/${serviceId}`}>Show</Link>
         </>

@@ -25,8 +25,8 @@ const WorkerShow = ({id, name, title, number, deleteWorker}) => {
       <h2>{worker.title}</h2>
       <h2>{worker.number}</h2>
       <p>ID: {params.workerId}</p>
-      <button onClick={ () => setEdit(true) }>Edit</button>
-      <button onClick={() => deleteWorker(id)}>Delete</button>
+      {/* <button onClick={ () => setEdit(true) }>Edit</button>
+      <button onClick={() => deleteWorker(id)}>Delete</button> */}
       <Services workerId={params.workerId}/>
     </>
 

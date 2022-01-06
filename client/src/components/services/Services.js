@@ -34,7 +34,7 @@ const Services = ({ workerId }) => {
   const updateService = (id, service) => {
     axios.put(`/api/workers/${workerId}/services/${id}`, { service })
     .then( res => {
-      const newUpdatedServices = service.map( s => {
+      const newUpdatedServices = services.map( s => {
         if (s.id === id ) {
           return res.data
         }

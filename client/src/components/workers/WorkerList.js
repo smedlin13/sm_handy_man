@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Worker from './Worker';
 // import WorkerShow from './WorkerShow';
 
-const WorkerList = ({ workers, deleteWorker, updateWorker  }) => {
+const WorkerList = ({ workers, updateWorker, deleteWorker  }) => {
   const [ editing, setEdit ] = useState(false)
   return (
     <>
