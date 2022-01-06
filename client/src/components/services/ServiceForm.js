@@ -23,12 +23,6 @@ const ServiceForm = ({ addService, updateService, setEdit, id, s_type, min, desc
   }
 
 
-    // const handleSubmit = (e) => {
-    //   e.preventDefault()
-    //   addService(service)
-    //   setService({ s_type: '', min: '', desc: ''})
-    // }
-
   return (
     <>
       <form onSubmit={handleSubmit}>

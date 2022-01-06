@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import CommentForm from './CommentForm';
 
-const CommentShow = ({ id, author, body, deleteComment, updateComment }) => {
+const CommentShow = ({ id, author, body, title, deleteComment, updateComment }) => {
+    const [comment, setComment] = useState({ author: '', body: '', title: ''})
     const [editing, setEdit] = useState(false)
 
 

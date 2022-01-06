@@ -1,11 +1,11 @@
 import {useState, useEffect } from 'react';
 
-const CommentForm = ({ addComment, id, author, body, updateComment, setEdit }) => {
-    const [comment, setComment] = useState({ author: '', body: ''})
+const CommentForm = ({ addComment, id, author, body, title, updateComment, setEdit }) => {
+    const [comment, setComment] = useState({ author: '', body: '', title: ''})
     
     useEffect ( () => {
         if (id) {
-            setComment({ author, body})
+            setComment({ author, body, title})
         }
     }, [])
 
@@ -15,12 +15,12 @@ const CommentForm = ({ addComment, id, author, body, updateComment, setEdit }) =
         if (id) {
             updateComment(id, comment)
             setEdit(false)
-        }else{
+        } else {
             addComment(comment)
         }
-        setComment({author: '',  body: '' })
+        setComment({author: '',  body: '', title: '' })
     }
-    
+
     
     return (
     <>
@@ -30,6 +30,13 @@ const CommentForm = ({ addComment, id, author, body, updateComment, setEdit }) =
                 name='author'
                 value={comment.author}
                 onChange={(e) => setComment({ ...comment, author: e.target.value })}
+                required
+            />
+            <label>Title:</label>
+            <input
+                name='title'
+                value={comment.title}
+                onChange={(e) => setComment({ ...comment, title: e.target.value })}
                 required
             />
             <label>Body:</label>

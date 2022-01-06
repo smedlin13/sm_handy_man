@@ -12,10 +12,12 @@ const Comments = ({ serviceId }) => {
         .catch ( err => console.log(err) )
     }, [])
 
+
     const addComment = (comment) => {
         axios.post(`/api/services/${serviceId}/comments`, { comment })
-        .then ( res => 
-          setComments([...comments, res.data]))
+        .then ( res => {
+          setComments([...comments, res.data])
+        })
         .catch ( err => console.log(err) )
     }
 
